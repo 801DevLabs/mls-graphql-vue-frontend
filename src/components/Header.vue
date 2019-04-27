@@ -1,25 +1,25 @@
 <template>
-<div>
-  <header>
-    <div class="header-content">
-      <div class="header-item branding" @click="home">
-        <h1>{{ title }}</h1>
+  <div>
+    <header>
+      <div class="header-content">
+        <div class="header-item branding" @click="home">
+          <h1>{{ title }}</h1>
+        </div>
+        <div class="header-item nav-bar">
+          <nav>
+            <ul>
+              <router-link to="/rest/orem" tag="li">Orem</router-link>
+              <router-link to="/rest/vineyard" tag="li">Vineyard</router-link>
+              <router-link to="/rest/provo" tag="li">Provo</router-link>
+              <router-link to="/rest/washington" tag="li">Washington</router-link>
+              <router-link to="/rest/st-george" tag="li">St George</router-link>
+              <router-link to="/rest/create" tag="li">Create</router-link>
+            </ul>
+          </nav>
+        </div>
       </div>
-      <div class="header-item nav-bar">
-        <nav>
-          <ul>
-            <router-link to="/rest/orem" tag="li">Orem</router-link>
-            <router-link to="/rest/vineyard" tag="li">Vineyard</router-link>
-            <router-link to="/rest/provo" tag="li">Provo</router-link>
-            <router-link to="/rest/washington" tag="li">Washington</router-link>
-            <router-link to="/rest/st-george" tag="li">St George</router-link>
-            <router-link to="/rest/create" tag="li">Create</router-link>
-          </ul>
-        </nav>
-      </div>
-    </div>
-  </header>
-</div>
+    </header>
+  </div>
 </template>
 
 <script>
@@ -27,15 +27,15 @@ export default {
   data() {
     return {
       title: "Utah Real Estate"
-    }
+    };
   },
 
   methods: {
     home() {
-      this.$router.push('/rest/')
+      this.$router.push("/rest/");
     }
   }
-}
+};
 </script>
 
 <style scoped>
@@ -91,7 +91,8 @@ nav ul li {
   cursor: pointer;
 }
 
-nav ul li:hover, .router-link-exact-active {
-  color: #4B4B4B;
+nav ul li:hover,
+.router-link-exact-active {
+  color: #4b4b4b;
 }
 </style>

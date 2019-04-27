@@ -1,86 +1,124 @@
 <template>
-<div>
-  <app-header></app-header>
-  <div class="hold-form">
-  <h1>Create a Listing</h1>
-    <form>
-      <label for="address">Address</label>
-      <input type="text" name="address" id="adress" v-model="address">
+  <div>
+    <app-header></app-header>
+    <div class="hold-form">
+      <h1>Create a Listing</h1>
+      <form>
+        <label for="address">Address</label>
+        <input type="text" name="address" id="adress" v-model="listing.address">
 
-      <label for="image">Listing Image</label>
-      <input type="text" name="image" id="image" v-model="image" placeholder="Google image link">
+        <label for="image">Listing Image</label>
+        <input
+          type="text"
+          name="image"
+          id="image"
+          v-model="listing.image"
+          placeholder="Google image link"
+        >
 
-      <label for="city">City</label>
-      <select name="city" id="city" v-model="city">
-        <option value="orem">Orem</option>
-        <option value="provo">Provo</option>
-        <option value="st-george">St. George</option>
-        <option value="vineyard">Vineyard</option>
-        <option value="washington">Washington</option>
-      </select>
+        <label for="city">City</label>
+        <select name="city" id="city" v-model="listing.city">
+          <option value="orem">Orem</option>
+          <option value="provo">Provo</option>
+          <option value="st-george">St. George</option>
+          <option value="vineyard">Vineyard</option>
+          <option value="washington">Washington</option>
+        </select>
 
-      <label for="state">State</label>
-      <select name="state" id="state" v-model="state">
-        <option value="utah">Utah</option>
-      </select>
+        <label for="state">State</label>
+        <select name="state" id="state" v-model="listing.state">
+          <option value="utah">Utah</option>
+        </select>
 
-      <label for="style">Style</label>
-      <select name="style" id="style" v-model="style">
-        <option value="Single-Family Home">Single-Family Home</option>
-        <option value="Single-Family Home">Single-Family Home</option>
-      </select>
+        <label for="style">Style</label>
+        <select name="style" id="style" v-model="listing.style">
+          <option value="Single-Family Home">Single-Family Home</option>
+          <option value="Single-Family Home">Single-Family Home</option>
+        </select>
 
-      <label for="status">Status</label>
-      <select name="status" id="status" v-model="on_market">
-        <option :value="true">On Market</option>
-        <option :value="false">Off Market</option>
-      </select>
+        <label for="status">Status</label>
+        <select name="status" id="status" v-model="listing.on_market">
+          <option :value="true">On Market</option>
+          <option :value="false">Off Market</option>
+        </select>
 
-      <button class="btn" @click.prevent="createListing">Create</button>
-    </form>
+        <button class="btn" @click.prevent="createListing">Create</button>
+      </form>
+    </div>
   </div>
-</div>
 </template>
 
 <script>
-import Header from './Header.vue'
-import axios from 'axios'
+import Header from "./Header.vue";
+import gql from "graphql-tag";
 
 export default {
   components: {
-        appHeader: Header,
-    },
+    appHeader: Header
+  },
   data() {
     return {
-      address: "",
-      image: "",
-      city: "",
-      state: "",
-      style: "",
-      on_market: ""
-    }
+      listing: {
+        address: "",
+        image: "",
+        city: "",
+        state: "",
+        style: "",
+        on_market: ""
+      }
+    };
   },
 
   methods: {
-    createListing(){
-      const formData = {
-        address: this.address,
-        image: this.image,
-        city: this.city,
-        state: this.state,
-        style: this.style,
-        on_market: this.on_market,
-      }
-      console.log(formData)
-      axios.post('https://utah-mls-listings.herokuapp.com/create', formData)
-      .then((res) => {
-        alert('Listing Created')
-        this.$router.push('/')
-      })
-      .catch(err => console.log(err))
+    createListing() {
+      this.$apollo
+        .mutate({
+          mutation: gql`
+            mutation createListing(
+              $address: String
+              $image: String
+              $city: String
+              $state: String
+              $style: String
+              $on_market: Boolean
+            ) {
+              createListing(
+                data: {
+                  address: $address
+                  image: $image
+                  city: $city
+                  state: $state
+                  style: $style
+                  on_market: $on_market
+                }
+              ) {
+                address
+                image
+                city
+                state
+                style
+                on_market
+              }
+            }
+          `,
+          variables: {
+            address: this.listing.address,
+            image: this.listing.image,
+            city: this.listing.city,
+            state: this.listing.state,
+            style: this.listing.style,
+            on_market: this.listing.on_market
+          }
+        })
+        .then(res => {
+          this.$router.push("/graphql/");
+        })
+        .catch(err => {
+          this.error = err;
+        });
     }
   }
-}
+};
 </script>
 
 <style scoped>
@@ -122,7 +160,7 @@ select {
   background: white;
   border: solid 1px #4b4b4b;
   border-radius: 0;
-  background: #FFF url(../../assets/select.png) no-repeat;
+  background: #fff url(../../assets/select.png) no-repeat;
   background-size: 20px;
   background-position: right 10px center;
 }

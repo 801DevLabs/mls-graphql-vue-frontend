@@ -1,26 +1,25 @@
 <template>
-<div class="hero">
-  <div class="hero-content">
-    <h1>
-      Top<br>
-      Listings<br>
-      in<br>
-      Utah</h1>
-      <div class="btn" @click="createListing">
-        List
-      </div>
+  <div class="hero">
+    <div class="hero-content">
+      <h1>
+        Top
+        <br>Listings
+        <br>in
+        <br>Utah
+      </h1>
+      <div class="btn" @click="createListing">List</div>
+    </div>
   </div>
-</div>
 </template>
 
 <script>
 export default {
   methods: {
-    createListing(){
-      this.$router.push('/create')
+    createListing() {
+      this.$router.push("/graphql/create");
     }
   }
-}
+};
 </script>
 
 <style scoped>
@@ -28,7 +27,7 @@ export default {
   position: relative;
   height: 426px;
   width: 100%;
-  background-image: url('../../assets/hero.jpg');
+  background-image: url("../../assets/hero.jpg");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;

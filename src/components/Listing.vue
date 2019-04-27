@@ -1,66 +1,76 @@
 <template>
-<div>
-  <app-header></app-header>
-  <div class="listing">
-    <div class="hold-image">
-      <img :src="listing.image" alt="">
-    </div>
-    <h1>{{ listing.address }}</h1>
-    <p><strong>City:</strong> {{ listing.city }}</p>
-    <p><strong>State:</strong> {{ listing.state }}</p>
-    <p><strong>Style:</strong> {{ listing.style }}</p>
-    <p><strong>Currently on Market:</strong> {{ listing.on_market }}</p>
-    <div class="buttons">
-      <div class="update-btn btn" @click="updateListing(listing._id)">
-        Update
+  <div>
+    <app-header></app-header>
+    <div class="listing">
+      <div class="hold-image">
+        <img :src="listing.image" alt>
       </div>
-      <div class="delete-btn btn" @click="deleteListing">
-        Delete
+      <h1>{{ listing.address }}</h1>
+      <p>
+        <strong>City:</strong>
+        {{ listing.city }}
+      </p>
+      <p>
+        <strong>State:</strong>
+        {{ listing.state }}
+      </p>
+      <p>
+        <strong>Style:</strong>
+        {{ listing.style }}
+      </p>
+      <p>
+        <strong>Currently on Market:</strong>
+        {{ listing.on_market }}
+      </p>
+      <div class="buttons">
+        <div class="update-btn btn" @click="updateListing(listing._id)">Update</div>
+        <div class="delete-btn btn" @click="deleteListing">Delete</div>
       </div>
     </div>
   </div>
-</div>
 </template>
 
 <script>
-import Header from './Header.vue'
-import axios from 'axios'
+import Header from "./Header.vue";
+import axios from "axios";
 export default {
   components: {
     appHeader: Header
   },
-    data() {
-        return {
-          id: this.$route.params.id,
-          listing: {
-
-          }
-        }
+  data() {
+    return {
+      id: this.$route.params.id,
+      listing: {}
+    };
+  },
+  created() {
+    axios
+      .get("https://utah-mls-listings.herokuapp.com/" + this.$route.params.id)
+      .then(res => {
+        this.listing = res.data;
+      });
+  },
+  methods: {
+    updateListing(id) {
+      this.$router.push("/rest/" + id + "/update");
     },
-    created() {
-      axios
-      .get('https://utah-mls-listings.herokuapp.com/' + this.$route.params.id)
-      .then((res) => {
-            this.listing = res.data
-        })
-    },
-    methods: {
-      updateListing(id){
-        this.$router.push('/rest/' + id + '/update')
-      },
 
-      deleteListing() {
-        let x = confirm("Are you sure you want to delete this listing?")
-        if(x == true) {
-          axios.delete('https://utah-mls-listings.herokuapp.com/' + this.$route.params.id + '/delete')
-          .then((res) => {
-            console.log(res)
-            this.$router.push('/')
-          })
-        }
+    deleteListing() {
+      let x = confirm("Are you sure you want to delete this listing?");
+      if (x == true) {
+        axios
+          .delete(
+            "https://utah-mls-listings.herokuapp.com/" +
+              this.$route.params.id +
+              "/delete"
+          )
+          .then(res => {
+            this.$router.push("/");
+          });
       }
     }
-}
+  }
+};
 </script>
 
 <style scoped>
