@@ -64,7 +64,7 @@ export default {
         })
         .then(res => {
           this.listings = (res.data);
-          console.log(JSON.stringify(res.data));
+          console.log(res.data);
         })
         .catch(err => {
           this.error = err;
