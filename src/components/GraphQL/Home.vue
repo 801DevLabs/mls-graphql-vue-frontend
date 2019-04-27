@@ -63,7 +63,7 @@ export default {
           `
         })
         .then(res => {
-          this.listings = (res.data);
+          this.myData = (res.data);
           console.log(res.data);
         })
         .catch(err => {
