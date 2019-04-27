@@ -9,8 +9,11 @@
                 </h1>
             </div>
             <div>
-                {{ listings.id }}
+                <!-- ACCESSING DATA RETURNED BY APOLLO FROM PORT 4000 -->
+                {{ myData.listings }}
             </div>
+
+            <!-- THE CODE BELOW WAS USED TO LOOP THORUGH AXIOS DATA -->
             <div class="hold-listings">
                 <div class="listing" v-for="listing in listings" :key="listing.id" @click="viewListing(listing._id)">
                     <div class="hold-photo">
@@ -39,7 +42,7 @@ export default {
     },
     data() {
         return {
-            listings: {}
+            myData: {}
         }
     },
     created() {
