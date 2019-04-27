@@ -1,5 +1,6 @@
 <template>
 <div>
+  <app-header></app-header>
   <div class="hold-form">
   <h1>Update: {{ listing.address }}</h1>
     <form>
@@ -42,9 +43,13 @@
 </template>
 
 <script>
+import Header from './Header.vue'
 import axios from 'axios'
 
 export default {
+  components: {
+    appHeader: Header
+  },
   data() {
     return {
       listing: {}
@@ -60,7 +65,7 @@ export default {
       axios.put('https://utah-mls-listings.herokuapp.com/' + this.$route.params.id + '/update', this.listing)
       .then((res) => {
         console.log(res)
-        this.$router.push('/' + this.$route.params.id)
+        this.$router.push('/rest/' + this.$route.params.id)
       })
       .catch(err => console.log(err))
 

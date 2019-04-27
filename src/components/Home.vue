@@ -1,5 +1,6 @@
 <template>
     <div>
+        <app-header></app-header>
         <app-hero></app-hero>
         <div class="listings">
             <div class="listings-head">
@@ -25,10 +26,12 @@
 </template>
 
 <script>
+import Header from './Header.vue'
 import Hero from './Hero.vue'
 import axios from 'axios'
 export default {
     components: {
+        appHeader: Header,
         appHero: Hero
     },
     data() {
@@ -41,62 +44,15 @@ export default {
         .get('https://utah-mls-listings.herokuapp.com/')
         .then((res) => {
             this.listings = res.data
+            console.log(res.data)
         })
         .catch(err => console.log(err))
     },
 
     methods: {
         viewListing(id) {
-            this.$router.push('/' + id)
-        },
-        getAll(){
-            axios
-            .get('https://utah-mls-listings.herokuapp.com/')
-            .then((res) => {
-                this.listings = res.data
-            })
-            .catch(err => console.log(err))
-        },
-        getOrem(){
-            axios
-            .get('https://utah-mls-listings.herokuapp.com/city/orem')
-            .then((res) => {
-                this.listings = res.data
-            })
-            .catch(err => console.log(err))
-        },
-        getVineyard(){
-            axios
-            .get('https://utah-mls-listings.herokuapp.com/city/vineyard')
-            .then((res) => {
-                this.listings = res.data
-            })
-            .catch(err => console.log(err))
-        },
-        getProvo(){
-            axios
-            .get('https://utah-mls-listings.herokuapp.com/city/provo')
-            .then((res) => {
-                this.listings = res.data
-            })
-            .catch(err => console.log(err))
-        },
-        getWashington(){
-            axios
-            .get('https://utah-mls-listings.herokuapp.com/city/washington')
-            .then((res) => {
-                this.listings = res.data
-            })
-            .catch(err => console.log(err))
-        },
-        getStGeorge(){
-            axios
-            .get('https://utah-mls-listings.herokuapp.com/city/st-george')
-            .then((res) => {
-                this.listings = res.data
-            })
-            .catch(err => console.log(err))
-        },
+            this.$router.push('/rest/' + id)
+        }
     }
 }
 </script>

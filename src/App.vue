@@ -1,7 +1,8 @@
 <template>
 <div>
-    <app-header></app-header>
+    
     <div class="container">
+        <app-toggle></app-toggle>
         <router-view></router-view>
     </div>
     
@@ -10,10 +11,10 @@
 </template>
 
 <script>
-import Header from './components/Header.vue'
+import Toggle from './components/ToggleHeader.vue'
     export default {
         components: {
-            appHeader: Header
+            appToggle: Toggle
         }
     }
 </script>

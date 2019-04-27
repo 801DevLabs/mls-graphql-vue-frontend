@@ -8,12 +8,12 @@
       <div class="header-item nav-bar">
         <nav>
           <ul>
-            <router-link to="/rest/orem" tag="li">Orem</router-link>
-            <router-link to="/rest/vineyard" tag="li">Vineyard</router-link>
-            <router-link to="/rest/provo" tag="li">Provo</router-link>
-            <router-link to="/rest/washington" tag="li">Washington</router-link>
-            <router-link to="/rest/st-george" tag="li">St George</router-link>
-            <router-link to="/rest/create" tag="li">Create</router-link>
+            <router-link to="/graphql/orem" tag="li">Orem</router-link>
+            <router-link to="/graphql/vineyard" tag="li">Vineyard</router-link>
+            <router-link to="/graphql/provo" tag="li">Provo</router-link>
+            <router-link to="/graphql/washington" tag="li">Washington</router-link>
+            <router-link to="/graphql/st-george" tag="li">St George</router-link>
+            <router-link to="/graphql/create" tag="li">Create</router-link>
           </ul>
         </nav>
       </div>
@@ -32,7 +32,7 @@ export default {
 
   methods: {
     home() {
-      this.$router.push('/rest/')
+      this.$router.push('/graphql')
     }
   }
 }

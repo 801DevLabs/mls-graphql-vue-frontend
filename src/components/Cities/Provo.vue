@@ -1,5 +1,6 @@
 <template>
     <div>
+        <app-header></app-header>
         <div class="listings">
             <div class="listings-head">
                 <h1>
@@ -24,8 +25,12 @@
 </template>
 
 <script>
+import Header from '../Header.vue'
 import axios from 'axios'
 export default {
+    components: {
+        appHeader: Header
+    },
     data() {
         return {
           city: "Provo",
@@ -43,7 +48,7 @@ export default {
 
     methods: {
         viewListing(id) {
-            this.$router.push('/' + id)
+            this.$router.push('/rest/' + id)
         }
     }
 }

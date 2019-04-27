@@ -29,17 +29,17 @@ import Header from '../Header.vue'
 import axios from 'axios'
 export default {
     components: {
-        appHeader: Header
+        appHeader: Header,
     },
     data() {
         return {
-          city: "Vineyard",
+          city: "Provo",
           listings: []
         }
     },
     created() {
         axios
-        .get('https://utah-mls-listings.herokuapp.com/city/vineyard')
+        .get('https://utah-mls-listings.herokuapp.com/city/provo')
         .then((res) => {
             this.listings = res.data
         })
@@ -48,7 +48,7 @@ export default {
 
     methods: {
         viewListing(id) {
-            this.$router.push('/rest/' + id)
+            this.$router.push('/graphql/' + id)
         }
     }
 }

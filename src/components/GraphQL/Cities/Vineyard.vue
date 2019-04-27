@@ -29,7 +29,7 @@ import Header from '../Header.vue'
 import axios from 'axios'
 export default {
     components: {
-        appHeader: Header
+        appHeader: Header,
     },
     data() {
         return {
@@ -48,7 +48,7 @@ export default {
 
     methods: {
         viewListing(id) {
-            this.$router.push('/rest/' + id)
+            this.$router.push('/graphql/' + id)
         }
     }
 }

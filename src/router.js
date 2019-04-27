@@ -8,54 +8,89 @@ import Provo from './components/Cities/Provo.vue'
 import Washington from './components/Cities/Washington.vue'
 import StGeorge from './components/Cities/StGeorge.vue'
 
+import GraphQLHome from './components/GraphQL/Home.vue'
+import GraphQLListing from './components/GraphQL/Listing.vue'
+import GraphQLUpdate from './components/GraphQL/Update.vue'
+import GraphQLCreate from './components/GraphQL/Create.vue'
+import GraphQLOrem from './components/GraphQL/Cities/Orem.vue'
+import GraphQLVineyard from './components/GraphQL/Cities/Vineyard.vue'
+import GraphQLProvo from './components/GraphQL/Cities/Provo.vue'
+import GraphQLWashington from './components/GraphQL/Cities/Washington.vue'
+import GraphQLStGeorge from './components/GraphQL/Cities/StGeorge.vue'
+
 export const routes = [
   {
-    path: '/create',
+    path: '/graphql/create',
+    component: GraphQLCreate
+  },
+  {
+    path: '/graphql/',
+    component: GraphQLHome
+  },
+  {
+    path: '/graphql/orem',
+    component: GraphQLOrem
+  },
+  {
+    path: '/graphql/vineyard',
+    component: GraphQLVineyard
+  },
+  {
+    path: '/graphql/provo',
+    component: GraphQLProvo
+  },
+  {
+    path: '/graphql/washington',
+    component: GraphQLWashington
+  },
+  {
+    path: '/graphql/st-george',
+    component: GraphQLStGeorge
+  },
+
+  {
+    path: '/graphql/:id',
+    component: GraphQLListing
+  },
+  {
+    path: '/graphql/:id/update',
+    component: GraphQLUpdate
+  },
+  {
+    path: '/rest/create',
     component: Create
   },
   {
-    path: '/',
+    path: '/rest/',
     component: Home
   },
   {
-    path: '/orem',
+    path: '/rest/orem',
     component: Orem
   },
   {
-    path: '/vineyard',
+    path: '/rest/vineyard',
     component: Vineyard
   },
   {
-    path: '/provo',
+    path: '/rest/provo',
     component: Provo
   },
   {
-    path: '/washington',
+    path: '/rest/washington',
     component: Washington
   },
   {
-    path: '/st-george',
+    path: '/rest/st-george',
     component: StGeorge
   },
 
   {
-    path: '/:id',
+    path: '/rest/:id',
     component: Listing
   },
   {
-    path: '/:id/update',
+    path: '/rest/:id/update',
     component: Update
-  },
-  {
-    path: '/:id/update',
-    component: Update
-  },
-  {
-    path: '/:id/update',
-    component: Update
-  },
-  {
-    path: '*',
-    redirect: '/'
   },
 ]

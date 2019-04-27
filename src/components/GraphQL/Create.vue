@@ -48,8 +48,8 @@ import axios from 'axios'
 
 export default {
   components: {
-    appHeader: Header
-  },
+        appHeader: Header,
+    },
   data() {
     return {
       address: "",
@@ -122,7 +122,7 @@ select {
   background: white;
   border: solid 1px #4b4b4b;
   border-radius: 0;
-  background: #FFF url(../assets/select.png) no-repeat;
+  background: #FFF url(../../assets/select.png) no-repeat;
   background-size: 20px;
   background-position: right 10px center;
 }

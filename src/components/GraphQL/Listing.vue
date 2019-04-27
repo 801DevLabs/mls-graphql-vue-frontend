@@ -27,8 +27,8 @@ import Header from './Header.vue'
 import axios from 'axios'
 export default {
   components: {
-    appHeader: Header
-  },
+        appHeader: Header,
+    },
     data() {
         return {
           id: this.$route.params.id,
@@ -46,7 +46,7 @@ export default {
     },
     methods: {
       updateListing(id){
-        this.$router.push('/rest/' + id + '/update')
+        this.$router.push('/graphql/' + id + '/update')
       },
 
       deleteListing() {
