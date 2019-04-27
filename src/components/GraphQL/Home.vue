@@ -10,7 +10,7 @@
             </div>
             <div>
                 <!-- ACCESSING DATA RETURNED BY APOLLO FROM PORT 4000 -->
-                {{ myData.listings }}
+                {{ listings.listings }}
             </div>
 
             <!-- THE CODE BELOW WAS USED TO LOOP THORUGH AXIOS DATA -->
@@ -42,7 +42,7 @@ export default {
     },
     data() {
         return {
-            myData: {}
+            listings: {}
         }
     },
     created() {
@@ -63,7 +63,7 @@ export default {
           `
         })
         .then(res => {
-          this.myData = (res.data);
+          this.listings = (res.data);
           console.log(res.data);
         })
         .catch(err => {
